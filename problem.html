@@ -22,3 +22,16 @@
 11 android 用volley，请求在设置代理的情况下会重试，（开发怀疑 是charls 问题，还说flider 下没发现）
 
 http://blog.csdn.net/jack_wolf_/article/details/46987025
+
+12  json 精度问题
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+//    [dic  setObject:[NSNumber numberWithDouble:123.123] forKey:@"amout"];
+    [dic  setObject:[NSNumber numberWithDouble:8963.79] forKey:@"amout"];
+    //8963.79
+    SBJson5Writer *writer = [[SBJson5Writer alloc] init];
+    NSString *tp = [writer stringWithObject:dic];
+    NSLog(@"tp:%@",tp);
+
+    tp:{"amout":8963.7900000000009}
+
+    系统json 库也类似
